@@ -1494,7 +1494,8 @@
                     <button onclick="compartilhar()" class="btn-primary px-4 py-2 rounded-full text-sm">
                         <i class="fas fa-share-alt mr-2"></i>Compartilhar
                     </button>
-                    <button onclick="abrirContatoConsultoria()" class="btn-primary px-4 py-2 rounded-full text-sm">
+                    <button onclick="abrirContatoConsultoria(const url = https://api.whatsapp.com/send/?phone=5521991577383&text=Olá%20Brayan!%20Acabei%20de%20usar%20sua%20Calculadora%20da%20Reforma%20Tributária%20e%20gostei%20muito!%20Gostaria%20de%20saber%20mais%20sobre%20seus%20serviços%20contábeis.&type=phone_number&app_absent=0
+            window.open(url, '_blank'))" class="btn-primary px-4 py-2 rounded-full text-sm">
                         <i class="fas fa-calendar-check mr-2"></i>Consultoria
                     </button>
                 </div>
@@ -2684,7 +2685,8 @@
                                 <div class="text-center">
                                     <p class="font-semibold text-gray-800">Interessado em um plano personalizado?</p>
                                     <p class="text-sm text-gray-600 mt-1">Entre em contato para uma consultoria detalhada</p>
-                                    <button onclick="abrirContatoConsultoria()" class="btn-primary mt-3 px-6 py-2 rounded-full">
+                                    <button onclick="abrirContatoConsultoria(const url = https://api.whatsapp.com/send/?phone=5521991577383&text=Olá%20Brayan!%20Acabei%20de%20usar%20sua%20Calculadora%20da%20Reforma%20Tributária%20e%20gostei%20muito!%20Gostaria%20de%20saber%20mais%20sobre%20seus%20serviços%20contábeis.&type=phone_number&app_absent=0
+            window.open(url, '_blank'))" class="btn-primary mt-3 px-6 py-2 rounded-full">
                                         <i class="fas fa-calendar-check mr-2"></i>Agendar Consultoria
                                     </button>
                                 </div>
@@ -3928,7 +3930,8 @@
             }
         }
 
-        function abrirContatoConsultoria() {
+        function abrirContatoConsultoria(const url = https://api.whatsapp.com/send/?phone=5521991577383&text=Olá%20Brayan!%20Acabei%20de%20usar%20sua%20Calculadora%20da%20Reforma%20Tributária%20e%20gostei%20muito!%20Gostaria%20de%20saber%20mais%20sobre%20seus%20serviços%20contábeis.&type=phone_number&app_absent=0
+            window.open(url, '_blank')) {
             const dados = {
                 faturamento: parseFloat(document.getElementById('faturamento').value) || 0,
                 regime: document.getElementById('regime').value,
