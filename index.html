@@ -1332,7 +1332,7 @@
             <div id="chart-cascata" class="tab-content">
                 <div class="mb-6">
                     <h3 class="text-lg font-semibold mb-4">Fluxo de Cálculo do IVA - Gráfico Cascata</h3>
-                    <p class="text-gray-600 mb-6">Diagrama em cascata que detalha o cálculo do IVA líquido, mostrando como os créditos tributários reduzem a carga final. Cada etapa representa um componente do cálculo, desde o IVA bruto até os descontos por créditos de insumos e ativo imobilizado.</p>
+                    <p class="text-gray-600 mb-6">Diagrama em cascata que detalha o cálculo do IVA líquido, mostrando como os créditos tributários reducem a carga final. Cada etapa representa um componente do cálculo, desde o IVA bruto até os descontos por créditos de insumos e ativo imobilizado.</p>
                 </div>
                 <div class="chart-container">
                     <canvas id="chartCascata"></canvas>
@@ -1494,9 +1494,8 @@
                     <button onclick="compartilhar()" class="btn-primary px-4 py-2 rounded-full text-sm">
                         <i class="fas fa-share-alt mr-2"></i>Compartilhar
                     </button>
-                    <button onclick="abrirContatoConsultoria(const url = https://api.whatsapp.com/send/?phone=5521991577383&text=Olá%20Brayan!%20Acabei%20de%20usar%20sua%20Calculadora%20da%20Reforma%20Tributária%20e%20gostei%20muito!%20Gostaria%20de%20saber%20mais%20sobre%20seus%20serviços%20contábeis.&type=phone_number&app_absent=0
-            window.open(url, '_blank'))" class="btn-primary px-4 py-2 rounded-full text-sm">
-                        <i class="fas fa-calendar-check mr-2"></i>Consultoria
+                    <button onclick="abrirContatoConsultoria()" class="btn-primary px-4 py-2 rounded-full text-sm">
+                        <i class="fas fa-calendar-check mr-2"></i>Consultoria WhatsApp
                     </button>
                 </div>
                 
@@ -2685,8 +2684,7 @@
                                 <div class="text-center">
                                     <p class="font-semibold text-gray-800">Interessado em um plano personalizado?</p>
                                     <p class="text-sm text-gray-600 mt-1">Entre em contato para uma consultoria detalhada</p>
-                                    <button onclick="abrirContatoConsultoria(const url = https://api.whatsapp.com/send/?phone=5521991577383&text=Olá%20Brayan!%20Acabei%20de%20usar%20sua%20Calculadora%20da%20Reforma%20Tributária%20e%20gostei%20muito!%20Gostaria%20de%20saber%20mais%20sobre%20seus%20serviços%20contábeis.&type=phone_number&app_absent=0
-            window.open(url, '_blank'))" class="btn-primary mt-3 px-6 py-2 rounded-full">
+                                    <button onclick="abrirContatoConsultoria()" class="btn-primary mt-3 px-6 py-2 rounded-full">
                                         <i class="fas fa-calendar-check mr-2"></i>Agendar Consultoria
                                     </button>
                                 </div>
@@ -3930,8 +3928,9 @@
             }
         }
 
-        function abrirContatoConsultoria(const url = https://api.whatsapp.com/send/?phone=5521991577383&text=Olá%20Brayan!%20Acabei%20de%20usar%20sua%20Calculadora%20da%20Reforma%20Tributária%20e%20gostei%20muito!%20Gostaria%20de%20saber%20mais%20sobre%20seus%20serviços%20contábeis.&type=phone_number&app_absent=0
-            window.open(url, '_blank')) {
+        // ==================== FUNÇÃO WHATSAPP CORRIGIDA E OTIMIZADA ====================
+        
+        function abrirContatoConsultoria() {
             const dados = {
                 faturamento: parseFloat(document.getElementById('faturamento').value) || 0,
                 regime: document.getElementById('regime').value,
@@ -3944,16 +3943,24 @@
             const reforma = calcularIVADual(dados);
             const economiaMensal = sistemaAtual.total - reforma.ivaLiquido;
             
-            const mensagem = `Olá Brayan, gostaria de agendar uma consultoria sobre a Reforma Tributária.\n\n` +
-                           `Minha empresa:\n` +
-                           `- Faturamento: ${formatarMoeda(dados.faturamento)}/mês\n` +
-                           `- Setor: ${document.getElementById('setor').options[document.getElementById('setor').selectedIndex].text}\n` +
-                           `- Regime: ${document.getElementById('regime').options[document.getElementById('regime').selectedIndex].text}\n` +
-                           `- Economia estimada: ${formatarMoeda(economiaMensal)}/mês\n\n` +
-                           `Podemos agendar uma conversa?`;
+            // Mensagem pré-formatada
+            const mensagem = encodeURIComponent(
+                `Olá Brayan! Acabei de usar sua Calculadora da Reforma Tributária e gostei muito! ` +
+                `Gostaria de saber mais sobre seus serviços contábeis. ` +
+                `\n\n` +
+                `Minha empresa:\n` +
+                `• Faturamento: ${formatarMoeda(dados.faturamento)}/mês\n` +
+                `• Setor: ${document.getElementById('setor').options[document.getElementById('setor').selectedIndex].text}\n` +
+                `• Regime: ${document.getElementById('regime').options[document.getElementById('regime').selectedIndex].text}\n` +
+                `• Estado: ${dados.estado}\n` +
+                `• Economia estimada: ${formatarMoeda(economiaMensal)}/mês\n\n` +
+                `Podemos agendar uma conversa?`
+            );
             
-            const telefone = "5521991577383";
-            const url = https://api.whatsapp.com/send/?phone=5521991577383&text=Olá%20Brayan!%20Acabei%20de%20usar%20sua%20Calculadora%20da%20Reforma%20Tributária%20e%20gostei%20muito!%20Gostaria%20de%20saber%20mais%20sobre%20seus%20serviços%20contábeis.&type=phone_number&app_absent=0
+            // URL direta para WhatsApp com seu número
+            const url = `https://wa.me/5521991577383?text=${mensagem}`;
+            
+            // Abrir WhatsApp em nova aba
             window.open(url, '_blank');
         }
 
